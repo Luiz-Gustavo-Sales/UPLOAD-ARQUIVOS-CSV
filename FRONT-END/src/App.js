@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Papa from 'papaparse';
 import api from './service/api';
-import Dashboard from './dashboard';
+import Dismelo from './components/dismelo';
 import {
   BarChart,
   Bar,
@@ -15,20 +15,47 @@ import {
 } from 'recharts';
 
 function App() {
-  //estado do arquivo CSV
+  const chartData = {
+    labels: [
+      'Boston',
+      'Worcester',
+      'Springfield',
+      'Lowell',
+      'Cambridge',
+      'New Bedford',
+    ],
+    datasets: [
+      {
+        label: 'Population',
+        data: [6100, 6100, 6100, 6100, 6100, 6100],
+        backgroundcolor: [
+          'rgba(255,99,132,0.4)',
+          'rgba(255,99,1,0.6)',
+          'rgba(255,9,36,0.6)',
+          'rgba(255,9,132,0.6)',
+          'rgba(255,9,12,0.6)',
+        ],
+      },
+    ],
+  };
+
+  //  const [Csv, setCsv] = useState(['']);
   const [Csv, setCsv] = useState(['']);
   const [dados, setDados] = useState(['']);
   //setando o arquivo no useState
   const handlechange = async (event) => {
-    //setCsv(event.target.files[0]);
-    console.log('event ', event);
-    var dadoscsv = event.target.files[0];
-    console.log('Olha aqui event do handleChange ', dadoscsv);
-    const response = await api.post('upload', dadoscsv);
+    setCsv(event.target.files[0]);
   };
   const changeUpload = async () => {
-    const csv = await api.get('/download');
-    console.log('OLha aqui ', csv);
+    const resultado = await Papa.parse(Csv, {
+      header: true,
+      delimiter: ';',
+      complete: (results, file) => {
+        var response = results.data;
+        api.post('upload', response);
+        console.log('Aqui resultado do PAPAPARSE', results.data);
+      },
+    });
   };
 
   return (
@@ -48,6 +75,7 @@ function App() {
         </button>
 
         <div className="graficos">
+          <br></br>
           <BarChart
             width={600}
             height={300}
@@ -71,6 +99,8 @@ function App() {
             {/* <Bar dataKey="uv" fill="#82ca9d" />*/}
           </BarChart>
         </div>
+
+        <Dismelo />
       </header>
     </div>
   );

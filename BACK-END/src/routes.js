@@ -6,4 +6,5 @@ const uploadFile = require('./controller//upload');
 
 routes.post('/upload', uploadFile.upload);
 
+routes.get('/list', uploadFile.download);
 module.exports = routes;
