@@ -8,12 +8,12 @@ module.exports = {
     console.log('Dados enviado pelo FRONT: ', dados);
     return res.json(csv);
   },
-  async download(req, res) {
-    const filtro = (value) => {
+  async download1(req, res) {
+    const filtro1 = (value) => {
       return value.filial == 1;
     };
-    const valorFIltrado = csv.filter(filtro);
-    console.log('Valor filtrado: ', valorFIltrado);
-    return res.json(valorFIltrado);
+    const valorFIltrado1 = csv.filter(filtro1);
+    console.log('Valor filtrado: ', valorFIltrado1);
+    return res.json(valorFIltrado1);
   },
 };

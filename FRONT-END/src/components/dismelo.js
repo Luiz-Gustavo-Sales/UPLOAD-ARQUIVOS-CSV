@@ -10,9 +10,11 @@ function App() {
   const [dados, setDados] = useState(['']);
   const [dismelo, setDismelo] = useState(['']);
   const handleEnviar = async () => {
-    const response = await api.get('/list');
-
-    setDismelo(response.data);
+    const response1 = await api.get('/list1');
+    const response3 = await api.get('/list3/');
+    setDismelo(response1.data);
+    console.log('Response1 Data', response1.data);
+    // console.log('Response3 Data', response3.data);
   };
 
   const chartData = {
@@ -33,7 +35,6 @@ function App() {
   //setando o arquivo no useState
   const handlechange = async (event) => {
     setCsv(event.target.files[0]);
-    console.log('Teste - ', Csv);
   };
   const changeUpload = async () => {
     const resultado = await Papa.parse(Csv, {

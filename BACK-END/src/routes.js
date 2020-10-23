@@ -2,9 +2,13 @@
 const express = require('express');
 //modulo de rotas do express
 const routes = express.Router();
-const uploadFile = require('./controller//upload');
+const Dismelo = require('./controller/dismelo');
+const Distrimix = require('./controller/distrimix');
+//rotas apra filial Dismelo
+routes.post('/upload', Dismelo.upload);
+routes.get('/list1', Dismelo.download1);
+//rotas apra filial Distrimix
+// routes.post('/upload', Distrimix.upload);
+// routes.get('/list3/', Distrimix.download3);
 
-routes.post('/upload', uploadFile.upload);
-
-routes.get('/list', uploadFile.download);
 module.exports = routes;
