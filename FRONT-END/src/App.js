@@ -3,7 +3,6 @@ import './App.css';
 import Papa from 'papaparse';
 import api from './service/api';
 import Dismelo from './components/dismelo';
-import Distrimix from './components/distrimix';
 import {
   BarChart,
   Bar,
@@ -62,7 +61,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Distrimix />
         <Dismelo />
       </header>
     </div>
