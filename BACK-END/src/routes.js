@@ -8,7 +8,7 @@ const Distrimix = require('./controller/distrimix');
 routes.post('/upload', Dismelo.upload);
 routes.get('/list1', Dismelo.download1);
 //rotas apra filial Distrimix
-// routes.post('/upload', Distrimix.upload);
-// routes.get('/list3/', Distrimix.download3);
+routes.post('/upload3', Distrimix.upload3);
+routes.get('/list3', Distrimix.download3);
 
 module.exports = routes;

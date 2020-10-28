@@ -11,22 +11,23 @@ function App() {
   const [dismelo, setDismelo] = useState(['']);
   const handleEnviar = async () => {
     const response1 = await api.get('/list1');
-    const response3 = await api.get('/list3/');
-    setDismelo(response1.data);
+    // const response3 = await api.get('/list3');
+    setDados(response1.data);
     console.log('Response1 Data', response1.data);
+    // console.log('Response3 Data', response3.data);
     // console.log('Response3 Data', response3.data);
   };
 
   const chartData = {
-    labels: ['Dismelo', 'Distrimix', 'SuperGiro'],
+    labels: ['Distrimix', 'Dismelo', 'Supergiro'],
     datasets: [
       {
         label: 'Venda do Mês',
-        data: [6300, 6800, 900],
+        data: dados,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(255, 8, 132, 0.6)',
-          'rgba(255, 99, 1, 0.6)',
+          'rgba(25, 11, 632, 0.6)',
+          'rgba(255, 8, 932, 0.6)',
+          'rgba(25, 99, 1, 0.6)',
         ],
       },
     ],
@@ -43,6 +44,7 @@ function App() {
       complete: (results, file) => {
         setDados(results.data);
         api.post('/upload', results.data);
+        api.post('/upload3', results.data);
         console.log('Aqui resultado do PAPAPARSE', results.data);
       },
     });
@@ -50,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2> Insira o arquivo para tratar os dados</h2>
+      {/* <h2> Insira o arquivo para tratar os dados</h2> */}
       <header className="App-header">
         <h3>INSIRA ARQUIVO CSV- GRAFICO DE BARRAS</h3>
         <input

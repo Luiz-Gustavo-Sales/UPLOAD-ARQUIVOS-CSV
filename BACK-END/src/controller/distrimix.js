@@ -1,6 +1,10 @@
+const multer = require('multer');
+const teste1 = 0;
+const upload = multer({ dest: teste1 });
 var csv = [''];
 module.exports = {
-  async upload(req, res) {
+  async upload3(req, res) {
+    // const arquivo_teste ;
     csv = req.body;
     const dados = req.body;
     console.log('Dados enviado pelo FRONT: ', dados);
@@ -11,7 +15,7 @@ module.exports = {
       return value.filial == 3;
     };
     const valorFIltrado3 = csv.filter(filtro3);
-    console.log('Valor filtrado: ', valorFIltrado3);
-    return res.json(valorFIltrado3);
+    console.log('Valor filtrado3: ', valorFIltrado3);
+    //return res.json(valorFIltrado3);
   },
 };

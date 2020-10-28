@@ -3,6 +3,7 @@ import './App.css';
 import Papa from 'papaparse';
 import api from './service/api';
 import Dismelo from './components/dismelo';
+import Distrimix from './components/distrimix';
 import {
   BarChart,
   Bar,
@@ -60,46 +61,8 @@ function App() {
 
   return (
     <div className="App">
-      <h2> Insira o arquivo para tratar os dados</h2>
       <header className="App-header">
-        <h3>INSIRA ARQUIVO CSV</h3>
-        <input
-          accept=".csv"
-          type="file"
-          name="file"
-          className="input-upload"
-          onChange={handlechange}
-        />
-        <button className="btn-csv" onClick={changeUpload}>
-          Enviar
-        </button>
-
-        <div className="graficos">
-          <br></br>
-          <BarChart
-            width={600}
-            height={300}
-            data={dados}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 50,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="preco" />
-            {/*metricas laterias*/}
-            <YAxis />
-            {/*Ação passar mouse por cima*/}
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="preco" fill="#8884d8" />
-
-            {/* <Bar dataKey="uv" fill="#82ca9d" />*/}
-          </BarChart>
-        </div>
-
+        <Distrimix />
         <Dismelo />
       </header>
     </div>
