@@ -35,19 +35,33 @@ function App() {
 
   //setando o arquivo no useState
   const handlechange = async (event) => {
-    // api.post("/upload3", { file: event.target.files[0] });
+    console.log("Event aqui", event);
+    api
+      .post("/upload", event.target.files[0], {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((resp) => {
+        console.log("OBA ", resp);
+      });
     setCsv(event.target.files[0]);
   };
   const changeUpload = async () => {
-    const resultado = await Papa.parse(Csv, {
-      header: true,
-      delimiter: ";",
-      complete: (results, file) => {
-        setDados(results.data);
-        api.post("/upload", results.data);
-        console.log("Aqui resultado do PAPAPARSE", results.data);
-      },
-    });
+    // const resultado = await Papa.parse(Csv, {
+    //   header: true,
+    //   delimiter: ";",
+    //   complete: (results, file) => {
+    //     setDados(results.data);
+    //     // api.post("/upload", results.data);
+    //     console.log("Aqui resultado do PAPAPARSE", results.data);
+    //   },
+    // });
+    api
+      .post("/upload", Csv, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((resp) => {
+        console.log("OBA ", resp);
+      });
   };
 
   return (

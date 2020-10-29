@@ -3,9 +3,19 @@ const fs = require("fs");
 var csv = [""];
 module.exports = {
   async upload(req, res) {
-    csv = req.body;
-    const dados = req.body;
-    console.log("Dados enviado pelo FRONT: ", dados);
+    // const dados = req.body;
+    csv = req;
+    const resultado = await Papa.parse(csv, {
+      header: true,
+      delimiter: ";",
+      complete: (results, file) => {
+        // api.post("/upload", results.data);
+        console.log("Aqui resultado do PAPAPARSE", results.data);
+      },
+    });
+    console.log("==========Dados enviado pelo FRONT==========: ", req);
+    console.log("Dados enviado pelo FRONT: ", csv);
+
     return res.json(csv);
   },
   async download1(req, res) {
@@ -32,6 +42,7 @@ module.exports = {
     // Filial1Soma = parseFloat(Filial1Soma).toFixed(2);
     // Filial3Soma = parseFloat(Filial3Soma).toFixed(2);
     const array1_3 = [];
+    //
     //setando os valores no array
     array1_3.push(Filial3Soma);
     array1_3.push(Filial1Soma);

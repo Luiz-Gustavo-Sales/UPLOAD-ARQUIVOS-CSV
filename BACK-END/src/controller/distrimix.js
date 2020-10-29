@@ -6,9 +6,9 @@ module.exports = {
   async upload3(req, res) {
     // const arquivo_teste ;
     csv = req.body;
-    console.log('Dados enviado pelo FRONT: ', csv);
+    // console.log('Dados enviado pelo FRONT: ', csv);
     const dados = req.body;
-    console.log('Dados enviado pelo FRONT: ', dados);
+    // console.log('Dados enviado pelo FRONT: ', dados);
     return res.json(csv);
   },
   async download3(req, res) {
