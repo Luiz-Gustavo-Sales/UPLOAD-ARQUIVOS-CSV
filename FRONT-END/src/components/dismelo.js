@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
-import '../App.css';
-import Papa from 'papaparse';
-import api from '../service/api';
+import React, { useState } from "react";
+import "../App.css";
+import Papa from "papaparse";
+import api from "../service/api";
 //import Dashboard from './dashboard';
-import { Line, Bar, Pie } from 'react-chartjs-2';
+import { Line, Bar, Pie } from "react-chartjs-2";
 
 function App() {
-  const [Csv, setCsv] = useState(['']);
-  const [dados, setDados] = useState(['']);
-  const [dismelo, setDismelo] = useState(['']);
+  const [Csv, setCsv] = useState([""]);
+  const [dados, setDados] = useState([""]);
+  const [dismelo, setDismelo] = useState([""]);
   const handleEnviar = async () => {
-    const response1 = await api.get('/list1');
+    const response1 = await api.get("/list1");
     // const response3 = await api.get('/list3');
     setDados(response1.data);
-    console.log('Response1 Data', response1.data);
+    console.log("Response1 Data", response1.data);
     // console.log('Response3 Data', response3.data);
     // console.log('Response3 Data', response3.data);
   };
 
   const chartData = {
-    labels: ['Distrimix', 'Dismelo', 'Supergiro'],
+    labels: ["Distrimix", "Dismelo", "Supergiro"],
     datasets: [
       {
-        label: 'Venda do Mês',
+        label: "Venda do Mês",
         data: dados,
         backgroundColor: [
-          'rgba(25, 11, 632, 0.6)',
-          'rgba(255, 8, 932, 0.6)',
-          'rgba(25, 99, 1, 0.6)',
+          "rgba(25, 11, 632, 0.6)",
+          "rgba(255, 8, 932, 0.6)",
+          "rgba(25, 99, 1, 0.6)",
         ],
       },
     ],
@@ -35,17 +35,17 @@ function App() {
 
   //setando o arquivo no useState
   const handlechange = async (event) => {
+    // api.post("/upload3", { file: event.target.files[0] });
     setCsv(event.target.files[0]);
   };
   const changeUpload = async () => {
     const resultado = await Papa.parse(Csv, {
       header: true,
-      delimiter: ';',
+      delimiter: ";",
       complete: (results, file) => {
         setDados(results.data);
-        api.post('/upload', results.data);
-        api.post('/upload3', results.data);
-        console.log('Aqui resultado do PAPAPARSE', results.data);
+        api.post("/upload", results.data);
+        console.log("Aqui resultado do PAPAPARSE", results.data);
       },
     });
   };

@@ -25,6 +25,6 @@ app.use(express.json());
 app.use(require('./routes'));
 
 //passando a porta apra inciada o servidor
-server.listen(3002, () => {
+server.listen(3003, () => {
   console.log('SERVE INICIADO NA PORTA 3002');
 });
