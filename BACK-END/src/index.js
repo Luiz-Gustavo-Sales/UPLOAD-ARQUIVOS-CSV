@@ -1,13 +1,14 @@
-const express = require('express');
+const express = require("express");
 
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
 
 //retirar do servidor http do express
-const server = require('http').Server(app);
-//habilitar o protocolo ws e http
-const io = require('socket.io')(server);
+const server = require("http").Server(app);
 
+//habilitar o protocolo ws e http
+const io = require("socket.io")(server);
+ 
 app.use((req, res, next) => {
   //criando uma nova variavel no req para poder utilizar o io que está sendo atribuido no req da nova função
   req.io = io;
@@ -22,9 +23,9 @@ app.use(express.json());
 //req o que o usuário envia pela URL
 
 //
-app.use(require('./routes'));
+app.use(require("./routes"));
 
 //passando a porta apra inciada o servidor
-server.listen(3003, () => {
-  console.log('SERVE INICIADO NA PORTA 3002');
+server.listen(3002, (erro) => {
+  console.log("rodando porta 3004");
 });
