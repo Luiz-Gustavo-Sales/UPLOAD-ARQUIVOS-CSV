@@ -4,6 +4,7 @@ import Papa from "papaparse";
 import api from "./service/api";
 import Dismelo from "./components/dismelo";
 import Teste from "./components/teste";
+import TesteData from "./components/date";
 import {
   BarChart,
   Bar,
@@ -63,6 +64,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Dismelo />
+        <TesteData />
         <Teste />
       </header>
     </div>

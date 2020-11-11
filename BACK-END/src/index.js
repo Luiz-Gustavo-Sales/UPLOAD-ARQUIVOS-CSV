@@ -1,31 +1,20 @@
 const express = require("express");
-
+const mongoose = require("mongoose");
+const routes = require("./routes");
 const cors = require("cors");
-const app = express();
+const port = process.env.PORT || 3002;
 
-//retirar do servidor http do express
-const server = require("http").Server(app);
+const api = express();
 
-//habilitar o protocolo ws e http
-const io = require("socket.io")(server);
- 
-app.use((req, res, next) => {
-  //criando uma nova variavel no req para poder utilizar o io que está sendo atribuido no req da nova função
-  req.io = io;
-  //quando terminar a requisição faz com que ele passe para proxima requisição
-  return next();
-});
-//permitir utilizar outros arquivos
-app.use(cors());
-//backeend tem que entender a estrutura de JSON, logo precisa import o json para o express entender essa estrutura
-app.use(express.json());
-//res= resposta para o fronteende
-//req o que o usuário envia pela URL
+mongoose.connect(
+  "mongodb+srv://bodegamix:bodegamix2020@cluster0-xsmns.mongodb.net/BDVENDAS?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true }
+);
 
-//
-app.use(require("./routes"));
+api.use(cors());
 
-//passando a porta apra inciada o servidor
-server.listen(3002, (erro) => {
-  console.log("rodando porta 3004");
-});
+
+api.use(express.json());
+api.use(routes);
+
+api.listen(port);

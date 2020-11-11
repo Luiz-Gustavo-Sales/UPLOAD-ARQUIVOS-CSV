@@ -1,48 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import "../App.css";
+import Papa from "papaparse";
 import api from "../service/api";
-
-class ReactUploadImage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      file: null,
-    };
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
-  onFormSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("myImage", this.state.file);
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
+//import Dashboard from './dashboard';
+import { Line, Bar, Pie } from "react-chartjs-2";
+import { title } from "process";
+import { YAxis } from "recharts";
+const Chartt = require("chart.js");
+function App() {
+  const [Csv, setCsv] = useState([""]);
+  const data = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    datasets: [
+      {
+        backgroundColor: ["rgba(215, 24, 62, 0.6)"],
+        borderColor: ["rgba(255, 206, 86, 0.2)"],
+        pointBackgroundColor: ["rgba(255, 206, 86, 0.2)"],
+        label: "Bodegamix 2020",
+        data: [100, 800, 450, 660, 790],
       },
-    };
-    console.log("olha aqui 1", config);
-    console.log("olha aqui 1", formData);
-    api
-      .post("/teste", formData, config)
-      .then((response) => {
-        alert("The file is successfully uploaded");
-      })
-      .catch((error) => {
-        console.log("erro aqui", error);
-      });
-  }
-  onChange(e) {
-    this.setState({ file: e.target.files[0] });
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.onFormSubmit}>
-        <h1>File Upload</h1>
-        <input type="file" name="myImage" onChange={this.onChange} />
-        <button type="submit">Upload</button>
-      </form>
-    );
-  }
+      {
+        backgroundColor: ["rgba(100, 169, 62, 0.6)"],
+        borderColor: ["rgba(255, 206, 86, 0.2)"],
+        pointBackgroundColor: ["rgba(0, 000, 00, 0.2)"],
+        label: "Bodegamix 2019 (M)",
+        data: [400, 100, 300, 200, 400],
+      },
+    ],
+  };
+  return (
+    <div className="App">
+      <header className="App-header">
+        <Line data={data} width={900} height={300} />
+      </header>
+    </div>
+  );
 }
-
-export default ReactUploadImage;
+export default App;

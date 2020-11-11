@@ -4,7 +4,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "i": "^0.3.6",
-    "mongoose": "^5.10.9",
+    "mongoose": "^5.10.13",
     "multer": "^1.4.2",
     "nodemon": "^2.0.6",
     "papaparse": "^5.3.0",

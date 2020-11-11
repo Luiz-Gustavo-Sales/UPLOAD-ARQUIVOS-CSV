@@ -10,17 +10,9 @@ function App() {
   const [dados, setDados] = useState([""]);
   const [dismelo, setDismelo] = useState([""]);
   const handleEnviar = async () => {
-    const response1 = await api.get("/list1");
+    const response1 = await api.get("/filtroCsv");
     console.log("Response 1 aqui ", response1);
 
-    // response1.data.map((objeto) => {
-    //   console.log(parseFloat(objeto));
-    //   var oba = 361688;
-    //   console.log(
-    //     "OLha aqui PTBR ",
-    //     oba.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
-    //   );
-    // });
     setDados(response1.data);
 
     console.log("Response1 Data", response1.data);
@@ -55,7 +47,7 @@ function App() {
   //passar o arquivo CSV para o BACK-END PARA TRATAR O ARQUIVO
   const changeUpload = async () => {
     api
-      .post("/upload", Csv, {
+      .post("/arquivoCsv", Csv, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((resp) => {
@@ -67,7 +59,7 @@ function App() {
     <div className="App">
       {/* <h2> Insira o arquivo para tratar os dados</h2> */}
       <header className="App-header">
-        <h3>INSIRA ARQUIVO CSV- GRAFICO DE BARRAS</h3>
+        <h3>TESTE COM DATE</h3>
         <input
           accept=".csv"
           type="file"

@@ -1,5 +1,9 @@
-filial;cidade;preco;codigo
-1;Castanhal;10.00;5090
-1;Belem;15.00;5020
-3;São_Francisco;20.00;5070
-3;Salinas;10.00;5030
+filial;cidade;preco;codigo;data
+1;Castanhal;10.00;5090;01/10/2020
+1;Belem;15.00;5020;01/10/2020
+3;São_Francisco;20.00;5070;01/10/2020
+3;Salinas;10.00;5030;data01/10/2020
+1;Castanhal;10.00;5090;01/11/2020
+1;Belem;15.00;5020;01/11/2020
+3;São_Francisco;20.00;5070;01/11/2020
+3;Salinas;10.00;5030;01/11/2020
